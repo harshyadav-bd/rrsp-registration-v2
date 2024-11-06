@@ -62,7 +62,7 @@ function processEmployerForm(formData) {
   // Create a trigger to send the email after 24 hours
   ScriptApp.newTrigger('sendDelayedEmailToEmployee')
     .timeBased()
-    .after(24 * 60 * 60 * 1000) // 24 hours in milliseconds
+    .after(60 * 1000) // 24 hours in milliseconds
     .create();
   
   return '';
