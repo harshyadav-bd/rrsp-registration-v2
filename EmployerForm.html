@@ -57,6 +57,10 @@
             0% { transform: translateY(-50%) rotate(0deg); }
             100% { transform: translateY(-50%) rotate(360deg); }
         }
+        input:disabled {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
@@ -145,7 +149,7 @@
                             messageDiv.innerHTML = `Our records indicate that your organization has the following matching plan: ${result.matchingPlan}%`;
                             formFillerCompany.parentNode.insertBefore(messageDiv, matchingPlanSection);
 
-                            // Hide the RRSP matching plan section completely
+                            // Hide sections
                             matchingPlanSection.style.display = 'none';
                             customPlanSection.style.display = 'none';
                             agreeToDefaultSection.style.display = 'none';
@@ -176,13 +180,18 @@
                             // Enable all fields for new registration
                             matchingPlanSection.style.display = 'block';
                             formFillerCompany.disabled = false;
-                            formFillerCompany.value = '';
                             agreeToDefaultSection.style.display = 'flex';
 
                             // Remove any existing notification
                             const existingNotification = document.querySelector('.notification');
                             if (existingNotification) {
                                 existingNotification.remove();
+                            }
+
+                            // Remove any existing hidden input
+                            const hiddenInput = document.getElementById('hiddenRrspValue');
+                            if (hiddenInput) {
+                                hiddenInput.remove();
                             }
                         }
                     })
